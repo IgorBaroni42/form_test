@@ -1,0 +1,43 @@
+* {  
+    font-family: Helvetica;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 1rem;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    width: 500px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.1rem;
+}
+
+input[type="checkbox"]{
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.hidden{
+    display: none;
+}
