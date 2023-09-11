@@ -8,22 +8,22 @@
     <script src="js/script.js" defer></script>
 </head>
 <body>
-    <h1>Dados pessoais do solicitante</h1>
-    <br>
     <form id="form">
+        <h1>Dados pessoais do solicitante</h1>
         <label for="name">NOME COMPLETO</label>
-        <input type="text"  id="name" name="name">
+        <input type="text"  id="name" name="name" placeholder="Digite o seu nome">
         <br>        
         <label for="rg">RG</label>
-        <input type="text" id="rg" name="rg">
+        <input type="text" id="rg" name="rg" maxlength="9" placeholder="Digite o seu RG">
         <br>
         <label for="cpf">CPF</label>
-        <input type="text" id="cpf" name="cpf">
+        <input type="text" id="cpf" name="cpf" placeholder="999.999.999-99" maxlength="14">
         <br>
-        <label for="paisNascimento">PAÍS DE NASCIMETO</label>
+        <label for="paisNascimento">PAÍS DE NASCIMENTO</label>
         <select name="paisNascimento" id="paisNascimento" onchange="carregarEstados()">
             <option value=""></option>
             <option value="Brasil">Brasil</option>
+            <option value="Estrangeiro">Estrangeiro</option>
         </select>
         <br>
         <div class="hidden">
@@ -38,12 +38,16 @@
                 <option value=""></option>
             </select>
         </div>
+        <div class="hidden" id="paisEstrangeiroDiv">
+            <label for="paisEstrangeiro">NOME DO PAÍS DE NASCIMENTO</label>
+            <input type="text" id="paisEstrangeiro" name="paisEstrangeiro">
+        </div>
         <br>
         <label for="nomeHospital">NOME DO HOSPITAL DE NASCIMENTO</label>
         <input type="text" id="nome_hospital" name="nome_hospital">
         <br>
         <label for="dataNascimento">DATA DE NASCIMENTO</label>
-        <input type="date" id="dataNascimento" name="dataNascimento">
+        <input type="date" id="dataNascimento" name="dataNascimento" placeholder="dd/mm/aaaa">
         <br>
         <label for="resideBrasil">ATUALMENTE RESIDE NO BRASIL</label>
         <select name="resideBrasil" id="resideBrasil">
@@ -53,7 +57,7 @@
         <br>
         <div id="enderecoFields" class=hidden>
             <label for="cep">CEP:</label>
-            <input type="text" id="cep" name="cep" maxlength="9">
+            <input type="text" id="cep" name="cep" maxlength="9" placeholder="00000-000">
             <br>
             <label for="logradouro">LOGRADOURO:</label>
             <input type="text" id="logradouro" name="logradouro" readonly>
@@ -72,10 +76,10 @@
         </div>
         <br>
         <label for="email">EMAIL</label>
-        <input type="text" id="email" name="email">
+        <input type="text" id="email" name="email" placeholder="VISITANTE@PROVEDOR.COM">
         <br>
         <label for="telefone">TELEFONE</label>
-        <input type="text" id="telefone" name="telefone">
+        <input type="text" id="telefone" name="telefone" maxlength="15" placeholder="(00) 0000-0000 e (00) 00000-0000">
         <br> 
         <h1>Informações Medicas</h1>
         <label for="usaMedicamento">FAZ USO DE MEDICAMENTOS?</label>
@@ -84,36 +88,47 @@
             <option value="sim">SIM</option>
         </select>
         <br>
-        <label for="medicamento">QUAL(IS) MEDICAMENTOS(S) UTILIZA?</label>
-        <select id="medicamento" name="medicamento" multiple>
-            <option value="agomelatina">Agomelatina</option>
-            <option value="bezodiazepina">Bezodiazepina</option>
-            <option value="bupropiona">Bupropiona</option>
-            <option value="buspirona">Buspirona</option>
-            <option value="citalopram">Citalopram</option>
-            <option value="duloxetina">duloxetina</option>
-            <option value="escitalopram">Escitalopram</option>
-            <option value="fluoxetina">Fluoxetina</option>
-        </select>
+        <div id="informacoesMedicasFields" class="hidden">
+        <fieldset>
+            <legend>QUAL(IS) MEDICAMENTOS(S) UTILIZA</legend>
+                <input type= checkbox class="medicamento" name="agomelatina" id="agomelatina"> <label for="agomelatina">
+                    Agomelatina</label><br>
+                <input type= checkbox class="medicamento" name="bezodiazepina" id="bezodiazepina"><label for="bezodiazepina">
+                    bezodiazepina</label><br>
+                <input type= checkbox class="medicamento" name="bupropiona" id="bupropiona"><label for="bupropiona">
+                    bupropiona</label><br>
+                <input type= checkbox class="medicamento" name="buspirona" id="buspirona"><label for="buspirona">
+                    buspirona</label><br>
+                <input type= checkbox class="medicamento" name="citalopram" id="citalopram"><label for="citalopram">
+                    citalopram</label><br>
+                <input type= checkbox class="medicamento" name="duloxetina" id="duloxetina"><label for="duloxetina">
+                    duloxetina</label><br>
+                <input type= checkbox class="medicamento" name="escitalopram" id="escitalopram"><label for="escitalopram">
+                    escitalopram</label><br>
+                <input type= checkbox class="medicamento" name="fluoxetina" id="fluoxetina"><label for="fluoxetina">
+                    fluoxetina</label><br>
+            </select>
+            </fieldset>
         <br>
         <label for="periodoMedicamento">DESCREVA DE QUANTO EM QUANTO TEMPO USA O(S) MEDICAMENTOS(S)</label>
         <input type="text" id="periodoMedicamento" name="periodoMedicamento">
+    </div>
         <br>
         <h1>Anexos</h1>
+        <div id="receitaMedicaAnexo" class="hidden">
         <label for="receitaMedica">RECEITA MEDICA DO(S) REMEDIO(S)</label>
-        <input type="file" id="receitaMedica" name="receitaMedica">
+        <input type="file" id="receitaMedica" name="receitaMedica" accept=".pdf, .png, .jpeg, .jpg">
+    </div>
         <br>
         <label for="docIdentificacao">DOCUMENTO DE IDENTIFICAÇÃO COM FOTO</label>
-        <input type="file" id="docIdentificacao" name="docIdentificacao">
+        <input type="file" id="docIdentificacao" name="docIdentificacao" accept=".pdf, .png, .jpeg, .jpg">
         <br>
         <H1>Declaração</H1>
         <p>
             TERMO DE TESTE <A href="http://opensource.locaweb.com.br/locawebstyle-v2/manual/formularios/mascaras-forms/" target="_blank">CLIQUE AQUI</A>
         </p>
-        <label for="concordo">
-            <input type="checkbox" id="concordo" name="concordo">
-            ESTOU CIENTE DOS TERMOS E CONCORDO EM COMPARTILHAR MEUS DADOS INFORMADOS NO FORMULÁRIO PARA FINS DE TESTE
-        </label>
+        <input type="checkbox" id="concordo" name="concordo">
+        <label for="concordo">ESTOU CIENTE DOS TERMOS E CONCORDO EM COMPARTILHAR MEUS DADOS INFORMADOS NO FORMULÁRIO PARA FINS DE TESTE</label>
         <br>
         <button type="submit">Enviar</button>
     </form>
